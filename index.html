@@ -1,63 +1,1773 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
-		<title>Training App</title>
-		<link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen" />
-		
-		<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/xui.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/LawnchairAdaptorHelpers.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/DOMStorageAdaptor.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/WebkitSQLiteAdaptor.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
-		
-	</head>
-	<body>
- 		<div id="title_bar">Phone<strong>Gap</strong> Training App</div>
+<head><script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+<title>Savergo</title>
+<meta content='width=device-width, initial-scale=1, user-scalable=no' name='viewport'>
+<link href='/phonegap/icons/Icon.png' rel='apple-touch-icon-precomposed'>
+<link href='/phonegap/icons/Icon-72.png' rel='apple-touch-icon-precomposed' sizes='72x72'>
+<link href='/phonegap/icons/Icon@2x.png' rel='apple-touch-icon-precomposed' sizes='114x114'>
+<link href='assets/app-0b5ddb6f1175fb26534724c2ab087387.css' rel='stylesheet'>
+<script charset='utf-8' src='cordova-1.7.0.js'></script>
+<script charset='utf-8' src='assets/app-f540de7c740cc99af3f015d6a9612f5e.js'></script>
+<script charset='utf-8' src='assets/app2-3fa34493b42341f03471341c76180c4d.js'></script>
+<script charset='utf-8' src='assets/app_gap-93ced539aa3de960e2ed21ca2037ae70.js'></script>
+<script>
+  //<![CDATA[
+    var R = {"app_host":"http://www.savergo.com","asset_host":"http://assets.savergo.com"};
+  //]]>
+</script>
 
-		<div id="welcome" class="view">
-		  <div class="app_button" id="map_button">Show My Location</div>
-  	      <div class="app_button" id="settings_button">Settings</div>
-		</div>
+<meta content="authenticity_token" name="csrf-param" />
+<meta content="v6AB8u3JhA6fRz3DlExlYR+zNj9X02aalaeIfiaH3GY=" name="csrf-token" />
+<script>
+  //<![CDATA[
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-31800612-1']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  //]]>
+</script>
 
-		<div id="map" class="view">
-		  <div class="map_image">
-              <img id="static_map" src="assets/img/staticmap.png">
-		  </div>
-		  <p>This is where you are</p>
-		  <div class="app_button" id="welcome_button">Go Back</div>
-		</div>
+</head>
+<body>
+<div id='templates'>
+<div id='a_deals_delete'>
+<div data-role='dialog'>
+<div class='ui-bar-b' data-role='header'>
+<a data-icon='delete' data-iconpos='notext' sam='#/a_deals'></a>
+<h1>Delete?</h1>
+</div>
+<div data-role='content'>
+<h1>
+Delete Deal?
+</h1>
+<p>
+Deal:
+<span jtext='name'></span>
+</p>
+<p>
+<form jaction='#/a_deals/{{id}}' method='DELETE'>
+<input data-theme='b' type='submit' value='Yes Delete'>
+</form>
+<a data-role='button' data-theme='a' sam='#/a_deals'>Cancel</a>
+</p>
+</div>
+</div>
+</div>
 
-		<div id="settings" class="view">
-		  <form id="settings_form">
-		    <fieldset>
-		      <legend>Map Type</legend>
-			  <input type="radio" name="map" value="roadmap" checked>Road Map<br/>
-		      <input type="radio" name="map" value="satellite">Satellite<br/>
-		      <input type="radio" name="map" value="terrain">Terrain<br/>
-		      <input type="radio" name="map" value="hybrid">Hybrid<br/>
-		    </fieldset>
-		    <fieldset>
-		      <legend>Zoom Level</legend>
-  		      <input type="radio" name="zoom" value="10">Super Far<br/>
-  		      <input type="radio" name="zoom" value="12">Far<br/>
-  		      <input type="radio" name="zoom" value="15" checked>Normal<br/>
-  		      <input type="radio" name="zoom" value="18">Close<br/>
-  		      <input type="radio" name="zoom" value="20">Super Close<br/>
-  		     </fieldset>
-		      <button id="save_button">Save</button>
-	      </form>
-		</div>
+<div id='a_deal'>
+<div data-role='page' jattr='data-url.#/a_deals/{{id}}'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' jattr='sam.#/a_deals?state={{state}}'>Deals</a>
+<h1>Deal</h1>
+</div>
+<div data-role='content'>
+<p>
+Deal #<span jtext='id'></span>&nbsp;status:
+<br><span jnif='state_draft'>draft</span><strong jif='state_draft'>Draft</strong>-<span jnif='state_submitted'>submitted</span><strong jif='state_submitted'>Submitted</strong>-<span jnif='state_queued'>queued</span><strong jif='state_queued'>Queued</strong>-<span jnif='state_live'>live</span><strong jif='state_live'>Live</strong>-<span jnif='state_archived'>archived</span><strong jif='state_archived'>Archived</strong><br>
+<span jnif='displayable'>Not on display.</span>
+<span jif='displayable'>
+On display
+(<span jtext='view_state'></span>).
+</span>
+</p>
+<hr>
+<div class='deal_info'>
+<img class='main p200' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p200.jpg'>
+<div class='side'>
+<div class='exclusive' jif='exclusive'>
+<img class='i40' src='http://assets.savergo.com/assets/logos/savergo_standalone_gradient_57px-09e9cd725b719060c53ba8af4984630b.png'>
+<div class='exc-bot'>Exclusive</div>
+</div>
+<div class='tickets'>
+<div class='tik-num' jtext='tickets_left'></div>
+<div class='tik-bot'>
+tickets
+<span jnif='presale'>left</span>
+</div>
+</div>
+<div class='time' jif='presale'>
+<div class='time-bot'>on sale in</div>
+<div class='time-num' jtext='timing_amount'></div>
+<div class='time-bot' jtext='timing_units'></div>
+</div>
+<div class='time' jif='onsale'>
+<div class='time-num' jtext='timing_amount'></div>
+<div class='time-bot'>
+<span jtext='timing_units'></span>
+left
+</div>
+</div>
+<div class='time' jif='soldout'>
+<div class='time-bot'>sold out</div>
+<div class='time-num' jtext='timing_amount'></div>
+<div class='time-bot'>
+<span jtext='timing_units'></span>
+ago
+</div>
+</div>
+<div class='time' jif='ended'>
+<div class='time-bot'>sale finished</div>
+<div class='time-num' jtext='timing_amount'></div>
+<div class='time-bot'>
+<span jtext='timing_units'></span>
+ago
+</div>
+</div>
+</div>
+<br class='cb'>
+<h1 class='deal cb' jtext='name'></h1>
+<p class='deal_description' jhtml='description'></p>
+<p>
+<img class='p40 wb' jsrc='{{R.asset_host}}/pictures/{{company.picture_id}}/p80.jpg'>
+<strong jtext='company.name'></strong>
+at
+<em jtext='nice_locations'></em>
+</p>
+<p class='fine_print'>
+Redeem
+<span jif='is_now_before_begin_redemption_on'>
+from
+<span jtext='nice_begin_redemption_on'></span>
+</span>
+<span jif='is_now_before_end_redemption_on'>
+until
+<span jtext='nice_end_redemption_on'></span>
+</span>
+<span jif='is_now_after_end_redemption_on'>
+period ended on
+<span jtext='nice_end_redemption_on'></span>
+</span>
+<br>
+On
+<span jtext='days_string'></span>
+<br>
+Hours:
+<span jtext='time_string'></span>
+</p>
+</div>
+<p>
+Tickets:
+<span jtext='tickets_left'></span>
+left of
+<span jtext='allocate_tickets'></span>
+</p>
+<hr>
+<a data-icon='download-alt' data-iconpos='right' data-role='button' jhref='{{R.app_host}}/home/deals_administrator/deals/{{id}}.pdf' jnif='phonegap' target='_blank'>View Deal Report PDF</a>
+<a data-icon='download-alt' data-iconpos='right' data-role='button' jhref='{{R.app_host}}/home/deals_administrator/deals/{{id}}/show_example_ticket.pdf' jnif='phonegap' target='_blank'>View Example Ticket PDF</a>
+<form jaction='#/a_deals/{{id}}/email' method='PUT'>
+<input data-icon='envelope-alt' data-iconpos='right' type='submit' value='Email Deal Report PDF'>
+</form>
+<form jaction='#/a_deals/{{id}}/email_example_ticket' method='PUT'>
+<input data-icon='envelope-alt' data-iconpos='right' type='submit' value='Email Example Ticket PDF'>
+</form>
+<div jif='state_draft'>
+<form jaction='#/a_deals/{{id}}' method='PUT'>
+<input name='deal[state_event]' type='hidden' value='merchant_submit'>
+<input data-icon='arrow-right' data-iconpos='right' data-theme='b' name='submit' type='submit' value='Submit for Approval'>
+</form>
+<a data-icon='edit' data-iconpos='right' data-role='button' data-theme='a' jattr='sam.#/a_deals/{{id}}/edit'>Edit</a>
+<a data-icon='trash' data-iconpos='right' data-role='button' data-theme='a' jattr='sam.#/a_deals/{{id}}/delete'>Delete</a>
+</div>
+<div jif='state_submitted'>
+<form jaction='#/a_deals/{{id}}' method='PUT'>
+<input name='deal[state_event]' type='hidden' value='merchant_edit'>
+<input data-icon='edit' data-iconpos='right' data-theme='b' name='submit' type='submit' value='Re-edit'>
+</form>
+</div>
+<div jif='state_queued'>
+<form jaction='#/a_deals/{{id}}' method='PUT'>
+<input name='deal[state_event]' type='hidden' value='merchant_edit'>
+<input data-theme='b' name='submit' type='submit' value='Re-edit'>
+</form>
+</div>
+<div jif='state_live'>
+<form jaction='#/a_deals/{{id}}' method='PUT'>
+<input name='deal[state_event]' type='hidden' value='merchant_archive'>
+<input data-icon='folder-open' data-iconpos='right' data-theme='b' name='submit' type='submit' value='Archive Deal Now'>
+</form>
+</div>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
 
-	</body>
+<div id='a_deals'>
+<div data-role='page' data-url='#/a_deals'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/deals_administrator'>Admin</a>
+<h1>Deals</h1>
+<a data-icon='plus' data-iconpos='right' data-role='button' data-theme='b' sam='#/a_deals/new'>Add Deal</a>
+<div data-role='navbar'>
+<ul>
+<li>
+<a class='state_draft' sam='#/a_deals?state=draft'>Draft</a>
+</li>
+<li>
+<a class='state_submitted' sam='#/a_deals?state=submitted'>Submitted</a>
+</li>
+<li>
+<a class='state_queued' sam='#/a_deals?state=queued'>Queued</a>
+</li>
+<li>
+<a class='state_live' sam='#/a_deals?state=live'>Live</a>
+</li>
+<li>
+<a class='state_archived' sam='#/a_deals?state=archived'>Archive</a>
+</li>
+</ul>
+</div>
+</div>
+<div data-role='content'>
+<h2>
+<span class='capitalize' jtext='state'></span>
+<span jnif='state'>All</span>
+deals for
+<span jtext='company.name'></span>
+</h2>
+<p></p>
+<ul data-inset='true' data-role='listview'>
+<div jeach='deals'>
+<li data-icon='edit'>
+<a jattr='sam.#/a_deals/{{id}}'>
+<img class='p80' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p80.jpg'>
+<h3 class='deal' jtext='name'></h3>
+<p>
+<strong jtext='company.name'></strong>
+<span jtext='description'></span>
+</p>
+<span class='ui-li-count' jtext='tickets_left'></span>
+</a>
+</li>
+</div>
+</ul>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='company_picture_edit'>
+<div data-role='page' data-url='#/company/picture/edit'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/company'>Company</a>
+<h1>Company Logo edit</h1>
+</div>
+<div data-role='content'>
+<p>
+<img class='p80' id='myImage' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p80.jpg'>
+</p>
+<div jif='phonegap'>
+<button onclick='capturePhotoEdit();'>Take Photo</button>
+<button onclick='getPhoto();'>From Photo Library</button>
+</div>
+<form action='#/company/picture' enctype='multipart/form-data' method='PUT'>
+<p jnif='phonegap'>
+<input name='picture[image_file]' type='file'>
+</p>
+<p jif='phonegap'>
+<input id='myImage_data' name='picture[data64]' type='hidden'>
+</p>
+<p class='inline-errors' jif='errorsBase' jtext='errorsBase'></p>
+<input type='submit' value='Update Logo'>
+</form>
+<progress max='100' value='0'></progress>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='a_deals_new'>
+<div data-role='page' jattr='data-url.{{data_url}}'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/deals_administrator'>Admin</a>
+<h1 jtext='{{createOrUpdate}} Deal'></h1>
+</div>
+<div data-role='content'>
+<form jaction='sammyPath' jattr='METHOD.httpMethod'>
+<span class='inline-errors' jtext='errors_base'></span>
+<div data-role='fieldcontain'>
+<label for='name'>Name</label>
+<input id='name' jval='name' name='deal[name]' required type='text'>
+<span class='inline-errors' jtext='errors_name'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='description'>Description</label>
+<textarea id='description' jval='description' name='deal[description]' required></textarea>
+<span class='inline-errors' jtext='errors_description'></span>
+</div>
+<div data-role='fieldcontain'>
+<fieldset data-role='controlgroup'>
+<legend>Exclusive?</legend>
+<input name='deal[exclusive]' type='hidden' value='0'>
+<input id='exclusive' jattr='checked.exclusive' name='deal[exclusive]' type='checkbox' value='1'>
+<label for='exclusive'>Exclusive to Savergo</label>
+</fieldset>
+</div>
+<div data-role='fieldcontain'>
+<fieldset data-role='controlgroup' data-type='horizontal'>
+<legend>Photo</legend>
+<img class='p80' id='myImage' jif='picture_id' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p80.jpg'>
+<img class='p80' id='myImage' jnif='picture_id'>
+<input id='photo_id' jval='photo_id' name='deal[photo_id]' type='hidden'>
+<input id='myImage_data' name='deal[data64]' type='hidden'>
+<div data-role='controlgroup' data-type='horizontal' jnif='phonegap'>
+<a data-icon='th' data-role='button' id='photoselector'>Library</a>
+<a data-icon='upload-alt' data-role='button' id='deal_image_upload' jif='supportsFileInput'>Upload</a>
+</div>
+<div data-role='controlgroup' data-type='horizontal' jif='phonegap'>
+<a data-icon='th' data-role='button' id='photoselector'>Library</a>
+<a data-icon='camera' data-role='button' onclick='capturePhotoEdit();'>Photo</a>
+<a data-icon='picture' data-role='button' onclick='getPhoto();'>Albums</a>
+</div>
+</fieldset>
+</div>
+<div class='hidden' data-role='fieldcontain' id='image_file_fields'>
+<label class='ui-input-text' for='deal_image_file'>Image File</label>
+<input class='ui-input-text' id='deal_image_file' name='deal[image_file]' type='file'>
+</div>
+<div data-role='fieldcontain'>
+<label for='allocate_tickets'>Allocate Tickets</label>
+<input class='thirty' id='allocate_tickets' jattr='max.{{current_user.company.tickets_unused_count}}' jval='allocate_tickets' min='0' name='deal[allocate_tickets]' required type='number'>
+<span class='hint'>
+<span jtext='current_user.company.tickets_unused_count'></span>
+unused available
+</span>
+</div>
+<div data-role='fieldcontain' jif='current_user.company.multi_location'>
+<fieldset data-role='controlgroup'>
+<legend>Locations</legend>
+<input name='deal[all_locations]' type='hidden' value='0'>
+<input id='all_locations' jattr='checked.all_locations' name='deal[all_locations]' onchange='all_locations_changed()' type='checkbox' value='1'>
+<label for='all_locations'>Valid at all your locations</label>
+</fieldset>
+</div>
+<div class='selected_location_ids' data-role='fieldcontain' jclass='allLocationsHiddenClass' jif='current_user.company.multi_location'>
+<label for='selected_location_ids'>Selected Locations</label>
+<select data-native-menu='false' id='selected_location_ids' jhtml='selectedLocationIdOptions' multiple='multiple' name='deal[selected_location_ids][]'></select>
+<!-- POPUP menu will cause a problem on small screens -->
+</div>
+<div data-role='fieldcontain'>
+<label for='quick_begin_ticket_sale_at'>Begin Ticket Sale</label>
+<select data-native-menu='true' id='quick_begin_ticket_sale_at' jhtml='quickBeginTicketSaleAtSelectOptions' name='deal[quick_begin_ticket_sale_at]' onchange='quick_begin_ticket_sale_at_changed();'></select>
+</div>
+<div data-role='fieldcontain' id='btsa' jclass='btsa_class'>
+<label for='begin_ticket_sale_at'>Custom Begin Ticket Sale At</label>
+<input class='thirty uglydatetime' data-options='{"mode": "slidebox", "dateFormat":"%Y-%m-%dT%I:%M%p", "timeFormatOverride":12, "fieldsOrderOverride":["y","m","d","h","i"], "focusMode": true, "noButton":true}' id='begin_ticket_sale_at' jattr='data-role.use_datebox' jval='begin_ticket_sale_at' name='deal[begin_ticket_sale_at]' type='datetime'>
+<span id='nice_begin_ticket_sale_at' jtext='nice_begin_ticket_sale_at'></span>
+<span class='inline-errors' jtext='errors_begin_ticket_sale_at'></span>
+<br>
+</div>
+<div data-role='fieldcontain'>
+<label for='quick_end_ticket_sale_at'>End Ticket Sale</label>
+<select data-native-menu='true' id='quick_end_ticket_sale_at' jhtml='quickEndTicketSaleAtSelectOptions' name='deal[quick_end_ticket_sale_at]' onchange='quick_end_ticket_sale_at_changed();'></select>
+</div>
+<div data-role='fieldcontain' id='etsa' jclass='etsa_class'>
+<label for='end_ticket_sale_at'>Custom End Ticket Sale At</label>
+<input class='thirty uglydatetime' data-options='{"mode": "slidebox", "dateFormat":"%Y-%m-%dT%I:%M%p", "timeFormatOverride":12, "fieldsOrderOverride":["y","m","d","h","i"], "focusMode": true, "noButton":true}' id='end_ticket_sale_at' jattr='data-role.use_datebox' jval='end_ticket_sale_at' name='deal[end_ticket_sale_at]' type='datetime'>
+<span id='nice_end_ticket_sale_at' jtext='nice_end_ticket_sale_at'></span>
+<span class='inline-errors' jtext='errors_end_ticket_sale_at'></span>
+<br>
+</div>
+<div data-role='fieldcontain'>
+<label for='quick_begin_redemption_on'>Begin Redemption</label>
+<select data-native-menu='true' id='quick_begin_redemption_on' jhtml='quickBeginRedemptionOnSelectOptions' name='deal[quick_begin_redemption_on]' onchange='quick_begin_redemption_on_changed();'></select>
+</div>
+<div data-role='fieldcontain' id='bro' jclass='bro_class'>
+<label for='begin_redemption_on'>Custom Begin Redemption On</label>
+<input class='thirty uglydate' data-options='{"mode": "slidebox", "useTodayButton": true, "dateFormat":"%Y-%m-%d", "focusMode": true, "noButton": true}' id='begin_redemption_on' jattr='data-role.use_datebox' jval='begin_redemption_on' name='deal[begin_redemption_on]' type='date'>
+<span id='nice_begin_redemption_on' jtext='nice_begin_redemption_on'></span>
+<span class='inline-errors' jtext='errors_begin_redemption_on'></span>
+<br>
+</div>
+<div data-role='fieldcontain'>
+<label for='quick_end_redemption_on'>End Redemption</label>
+<select data-native-menu='true' id='quick_end_redemption_on' jhtml='quickEndRedemptionOnSelectOptions' name='deal[quick_end_redemption_on]' onchange='quick_end_redemption_on_changed();'></select>
+</div>
+<div data-role='fieldcontain' id='ero' jclass='ero_class'>
+<label for='end_redemption_on'>Custom End Redemption On</label>
+<input class='thirty uglydate' data-options='{"mode": "slidebox", "useTodayButton": true, "dateFormat":"%Y-%m-%d", "focusMode": true, "noButton": true}' id='end_redemption_on' jattr='data-role.use_datebox' jval='end_redemption_on' name='deal[end_redemption_on]' type='date'>
+<span id='nice_end_redemption_on' jtext='nice_end_redemption_on'></span>
+<span class='inline-errors' jtext='errors_end_redemption_on'></span>
+<br>
+</div>
+<div data-role='fieldcontain'>
+<label for='quick_valid_days'>Valid Days</label>
+<select data-native-menu='true' id='quick_valid_days' jhtml='quickValidDaysOptions' name='deal[quick_valid_days]' onchange='quick_valid_days_changed();'></select>
+</div>
+<div data-role='fieldcontain' id='vd' jclass='vd_class'>
+<input name='deal[sunday]' type='hidden' value='0'>
+<input name='deal[monday]' type='hidden' value='0'>
+<input name='deal[tuesday]' type='hidden' value='0'>
+<input name='deal[wednesday]' type='hidden' value='0'>
+<input name='deal[thursday]' type='hidden' value='0'>
+<input name='deal[friday]' type='hidden' value='0'>
+<input name='deal[saturday]' type='hidden' value='0'>
+<fieldset data-role='controlgroup' data-type='horizontal'>
+<legend>Custom Valid Days</legend>
+<input id='sunday' jattr='checked.sunday' name='deal[sunday]' type='checkbox' value='1'>
+<label for='sunday'>Sun</label>
+<input id='monday' jattr='checked.monday' name='deal[monday]' type='checkbox' value='1'>
+<label for='monday'>Mon</label>
+<input id='tuesday' jattr='checked.tuesday' name='deal[tuesday]' type='checkbox' value='1'>
+<label for='tuesday'>Tue</label>
+<input id='wednesday' jattr='checked.wednesday' name='deal[wednesday]' type='checkbox' value='1'>
+<label for='wednesday' value='1'>Wed</label>
+<input id='thursday' jattr='checked.thursday' name='deal[thursday]' type='checkbox' value='1'>
+<label for='thursday'>Thu</label>
+<input id='friday' jattr='checked.friday' name='deal[friday]' type='checkbox' value='1'>
+<label for='friday'>Fri</label>
+<input id='saturday' jattr='checked.saturday' name='deal[saturday]' type='checkbox' value='1'>
+<label for='saturday'>Sat</label>
+</fieldset>
+</div>
+<div data-role='fieldcontain'>
+<label for='availability'>Valid Hours</label>
+<select data-native-menu='true' id='availability' jhtml='availabilitySelectOptions' name='deal[availability]' onchange='availability_changed();'></select>
+</div>
+<div class='ui-grid-a availability_times'>
+<div class='ui-block-a availability_from' jclass='availabilityHiddenFromClass'>
+<label for='valid_time_from'>Hours From</label>
+<select id='valid_time_from' jhtml='validTimeFromSelect' name='deal[valid_time_from]'></select>
+</div>
+<div class='ui-block-b availability_to' jclass='availabilityHiddenToClass'>
+<label for='valid_time_to'>Hours To</label>
+<select id='valid_time_to' jhtml='validTimeToSelect' name='deal[valid_time_to]'></select>
+</div>
+</div>
+<div data-role='fieldcontain'>
+<input data-theme='b' jval='{{createOrUpdate}} Deal' name='submit' type='submit'>
+</div>
+</form>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='about'>
+<div data-role='page' data-url='#/about'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/root'>Back</a>
+<h1>Savergo</h1>
+</div>
+<div data-role='content'>
+<h2>About Savergo</h2>
+<p>
+Even if you love everything about your job, going through the
+same old routine 250 days a year is no way to live a life.
+</p>
+<p>
+Our brains, bodies and taste buds thrive on new experiences,
+spontaneity and serendipity.
+</p>
+<p>
+That’s why we created Savergo.
+</p>
+<p>
+Our vision is to make the workweek happier, healthier and
+more fun for employees everywhere.
+</p>
+<h3>Here’s how it works</h3>
+<p>
+We build relationships (real face-to-face ones) with the most loved
+restaurants, bars, shops, salons, gyms and entertainment venues in
+areas where lots of people work.
+</p>
+<p>
+Then these local partners dream up creative offers exclusively
+for hard-working locals.
+</p>
+<p>
+Free dishes at local lunch spots, half-off the best yoga classes,
+a season-end private shoe sale, a complimentary blow dry, discounts
+on gym memberships and more.
+</p>
+<p>
+Our focus is on the best local spots and real offers that we’d jump
+at in a heartbeat.
+</p>
+<h3>3 things make Savergo useful and unique</h3>
+<p>
+We're “hyper-local”, we're exclusively for employees and we only allow
+quality offers on the platform.
+</p>
+<p>
+These offers pop up each day (via email or mobile) and open the
+eyes (and mouths) of local employees to new experiences
+and offers that help save lots of hard-earned money on everyday
+purchases.
+</p>
+<h3>
+For local merchants, your success is our success
+</h3>
+<p>
+We care about how enjoyable and effective we are as a partner in
+doing one simple thing: helping businesses and their employees find
+and enjoy what you bring to the local community.
+</p>
+<h3>This App</h3>
+<p>
+The Savergo App is a free app that allows Savergo members
+(employees) to access the Savergo platform.
+</p>
+<p>
+Employees have access to exclusive deals offered by our
+local merchant partners. Savergo is currently available in
+the Soho and Shoreditch areas of London.
+</p>
+<p>
+Employees need to exchange Savergo
+<em>credits</em>
+for deal
+<em>tickets.</em>
+Many types of deals and benefits are offered on Savergo,
+but they are typically limited in number and available for
+only a short time.
+</p>
+<p>
+Savergo credits are not free. Employers can subscribe to
+our service and offer the benefits to their entire workforce.
+</p>
+<p>
+Merchants interested in partnering with us can contact us,
+<a mailto='info@savergo.com'>info@savergo.com</a>
+or see our website for further details.
+</p>
+<p>
+Savergo Limited founded 2012 in London, UK.
+</p>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee benefits are now local</h4>
+</div>
+</div>
+</div>
+
+<div id='colleague'>
+<div data-role='page' jattr='data-url.#/colleagues/{{id}}'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/colleagues'>Back</a>
+<h1>Colleague</h1>
+</div>
+<div data-role='content'>
+<h2 jtext='full_name'></h2>
+<img class='wb p200' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p400.jpg'>
+<h3 jif='job_title' jtext='job_title'></h3>
+<h4>
+<span jtext='company.name'></span>
+<br>
+<span jif='location' jtext='location.name'></span>
+</h4>
+<p jtext='{{leadings_count}} followers'></p>
+<p>
+<form action='#/followings' jnif='cu_following' method='POST'>
+<input jval='id' name='following[leader_id]' type='hidden'>
+<input data-theme='b' type='submit' value='Follow'>
+</form>
+<form jaction='#/followings/{{id}}' jif='cu_following' method='DELETE'>
+<input type='submit' value='Unfollow'>
+</form>
+</p>
+<div data-role='collapsible' jif='current_user.company_admin'>
+<h3>User Admin</h3>
+<form jaction='#/grant/{{id}}' jnif='company_admin' method='PUT'>
+<input type='submit' value='Grant Company Admin'>
+</form>
+<form jaction='#/revoke/{{id}}' jif='company_admin' method='PUT'>
+<input type='submit' value='Revoke Company Admin'>
+</form>
+<div jif='current_user.company.merchant'>
+<form jaction='#/grant_deals/{{id}}' jnif='deals_admin' method='PUT'>
+<input type='submit' value='Grant Deals Admin'>
+</form>
+<form jaction='#/revoke_deals/{{id}}' jif='deals_admin' method='PUT'>
+<input type='submit' value='Revoke Deals Admin'>
+</form>
+</div>
+</div>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='colleagues'>
+<div data-role='page' data-url='#/colleagues'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/company'>Company</a>
+<h1>Colleagues</h1>
+</div>
+<div data-role='content'>
+<h2>
+Colleagues at
+<span jtext='name'></span>
+</h2>
+<ul data-inset='true' data-role='listview'>
+<div jeach='users.all'>
+<li data-icon='chevron-right'>
+<a jattr='sam.#/colleagues/{{id}}'>
+<img class='p80' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p80.jpg'>
+<h3 jtext='name'></h3>
+<p>
+<span jif='company_admin'>company admin</span>
+</p>
+</a>
+</li>
+</div>
+</ul>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='company'>
+<div data-role='page' data-url='#/company'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='home' sam='#/home'>Home</a>
+<h1>Company</h1>
+</div>
+<div data-role='content'>
+<div class='company_info'>
+<img class='p80' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p160.jpg'>
+<strong jtext='name'></strong>
+<br>
+<span jtext='description'></span>
+<br>
+<a jhref='website' jif='website' jtext='website' target='_blank'></a>
+</div>
+<p class='cb'>
+<a data-icon='chevron-right' data-iconpos='right' data-role='button' sam='#/colleagues'>Colleagues</a>
+</p>
+<div data-role='collapsible'>
+<h3>Locations</h3>
+<ul data-inset='true' data-role='listview'>
+<div jeach='locations.all'>
+<li data-icon='edit'>
+<a jattr='sam.#/locations/{{id}}' jtext='name'></a>
+</li>
+</div>
+</ul>
+</div>
+<div data-role='collapsible' jif='current_user.company_admin'>
+<h3>Company Administration</h3>
+<div data-role='controlgroup'>
+<a data-role='button' sam='#/locations'>Manage Locations</a>
+<a data-role='button' sam='#/company/edit'>Edit Company Details</a>
+<a data-role='button' sam='#/company/picture/edit'>Edit Company Logo</a>
+<a data-role='button' sam='#/domains'>Email Domains</a>
+</div>
+</div>
+<p jif='current_user.deals_administrator'>
+<a data-icon='cog' data-iconpos='right' data-role='button' data-theme='b' sam='#/deals_administrator'>Deals Administration</a>
+</p>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='company_edit'>
+<div data-role='page' data-url='#/company/edit'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/company'>Back</a>
+<h1>Company Edit</h1>
+</div>
+<div data-role='content'>
+<form action='#/company' method='PUT'>
+<div data-role='fieldcontain'>
+<label for='name'>Company Name</label>
+<input id='name' jval='name' name='company[name]' required type='text'>
+<span class='inline-errors' jtext='errors_name'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='description'>Description</label>
+<input id='description' jval='description' name='company[description]' required type='text'>
+<span class='inline-errors' jtext='errors_description'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='website'>Website</label>
+<input id='website' jval='website' name='company[website]' required type='url'>
+<span class='inline-errors' jtext='errors_website'></span>
+</div>
+<div data-role='fieldcontain'>
+<input name='submit' type='submit' value='Update'>
+</div>
+</form>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='deals_administrator'>
+<div data-role='page' data-url='#/deals_administrator'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/company'>Back</a>
+<h1>Deals Admin</h1>
+<a data-icon='plus' data-iconpos='right' data-role='button' data-theme='b' sam='#/a_deals/new'>Add Deal</a>
+</div>
+<div data-role='content'>
+<p>
+<span jtext='current_user.company.name'></span>
+currently has
+<span jtext='current_user.company.tickets_unused_count'></span>
+unused tickets.
+<a data-icon='external-link' data-iconpos='right' data-inline='true' data-mini='true' data-role='button' jattr='target.phonegap_target' jhref='{{R.app_host}}/pricing'>Get More</a>
+</p>
+<ul data-inset='true' data-role='listview'>
+<li data-icon='chevron-right'>
+<a sam='#/a_deals?state=draft'>
+Draft Deals
+<span class='ui-li-count' jtext='deals_draft.count'></span>
+</a>
+</li>
+<li data-icon='chevron-right'>
+<a sam='#/a_deals?state=submitted'>
+Submitted Deals
+<span class='ui-li-count' jtext='deals_submitted.count'></span>
+</a>
+</li>
+<li data-icon='chevron-right'>
+<a sam='#/a_deals?state=queued'>
+Queued Deals
+<span class='ui-li-count' jtext='deals_queued.count'></span>
+</a>
+</li>
+<li data-icon='chevron-right'>
+<a sam='#/a_deals?state=live'>
+Live Deals
+<span class='ui-li-count' jtext='deals_live.count'></span>
+</a>
+</li>
+<li data-icon='chevron-right'>
+<a sam='#/a_deals?state=archived'>
+Archived Deals
+<span class='ui-li-count' jtext='deals_archived.count'></span>
+</a>
+</li>
+</ul>
+<p>
+<a data-role='button' sam='#/deals_administrator/photos'>Deal Photo Library</a>
+</p>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='deals_photos'>
+<div data-role='page' data-url='#/deals_administrator/photos'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/deals_administrator'>Admin</a>
+<h1>Photo Library</h1>
+</div>
+<div data-role='content'>
+<h2>Deal Photo Library</h2>
+<p>
+<a data-icon='plus' data-inline='true' data-role='button' data-theme='b' sam='#/deals_administrator/photos/new'>Add New Photo</a>
+</p>
+<div jeach='photos'>
+<p>
+<img class='p160 wb' jsrc='{{R.asset_host}}/photos/{{id}}/p320.jpg'>
+<a data-icon='trash' data-iconpos='notext' data-inline='true' data-role='button' jattr='sam.#/deals_administrator/photos/{{id}}/delete'></a>
+</p>
+</div>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='deals_photo_delete'>
+<div data-role='dialog'>
+<div class='ui-bar-b' data-role='header'>
+<a data-icon='delete' data-iconpos='notext' sam='#/deals_administrator/photos'></a>
+<h1>Delete?</h1>
+</div>
+<div data-role='content'>
+<h3>
+Delete Photo?
+</h3>
+<p>
+<img class='p40 wb' jsrc='{{R.asset_host}}/photos/{{id}}/p80.jpg'>
+</p>
+<p>
+Really delete photo?:
+</p>
+<p>
+<form jaction='#/deals_administrator/photos/{{id}}' method='DELETE'>
+<input data-theme='b' type='submit' value='Yes Delete'>
+</form>
+<a data-role='button' data-theme='a' sam='#/deals_administrator/photos'>Cancel</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id='deals_photos_new'>
+<div data-role='page'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/deals_administrator/photos'>Photos</a>
+<h1>Post Photo</h1>
+</div>
+<div data-role='content'>
+<h2>Post a new photo</h2>
+<div jif='phonegap'>
+<img class='p80' id='myImage'>
+<button onclick='capturePhotoEdit();'>Take Photo</button>
+<button onclick='getPhoto();'>From Device Library</button>
+</div>
+<form action='#/deals_administrator/photos' enctype='multipart/form-data' method='POST'>
+<p jnif='phonegap'>
+<input name='photo[image_file]' type='file'>
+</p>
+<p jif='phonegap'>
+<input id='myImage_data' name='photo[data64]' type='hidden'>
+</p>
+<p class='inline-errors' jif='errors_base' jtext='errors_base'></p>
+<input type='submit' value='Post Photo'>
+</form>
+<progress max='100' value='0'></progress>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='domains'>
+<div data-role='page' data-url='#/domains'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/company'>Company</a>
+<h1>Domains</h1>
+</div>
+<div data-role='content'>
+<h2>
+Domains for
+<span jtext='name'></span>
+</h2>
+<p>
+<a data-icon='plus' data-role='button' data-theme='b' sam='#/domains/new'>Add New Domain</a>
+</p>
+<ul data-inset='true' data-role='listview'>
+<div jeach='domains.all'>
+<li data-icon='minus'>
+<a jattr='sam.#/domains/{{id}}' jtext='domain'></a>
+</li>
+</div>
+</ul>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='domains_delete'>
+<div data-role='dialog'>
+<div class='ui-bar-b' data-role='header'>
+<a data-icon='delete' data-iconpos='notext' sam='#/domains'></a>
+<h1>Delete?</h1>
+</div>
+<div data-role='content'>
+<h1>
+Delete Domain?
+</h1>
+<p>
+Domain:
+<span jtext='domain'></span>
+</p>
+<p>
+<form jaction='#/domains/{{id}}' method='DELETE'>
+<input data-theme='b' type='submit' value='Yes Delete'>
+</form>
+<a data-role='button' data-theme='a' sam='#/domains'>Cancel</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id='domains_new'>
+<div data-role='page'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/domains'>Domains</a>
+<h1>Add Domain</h1>
+</div>
+<div data-role='content'>
+<p>Add only email domain names that are used in your company.</p>
+<form action='#/domains' method='POST'>
+<span class='inline-errors' jtext='errors_base'></span>
+<div data-role='fieldcontain'>
+<label for='domainx'>Domain Name</label>
+<input id='domainx' jval='domain' name='domain[domain]' placeholder='e.g. example.com' required type='text'>
+<span class='inline-errors' jtext='errors_domain'></span>
+</div>
+<div data-role='fieldcontain'>
+<input name='submit' type='submit' value='Create Domain'>
+</div>
+</form>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='home'>
+<div data-role='page' data-url='#/home'>
+<div class='ui-bar-b' data-role='header'>
+<a data-icon='refresh' sam='#/reload'>Reload</a>
+<div class='shead'></div>
+<h1 id='h1-hidden'>Savergo</h1>
+<a data-icon='signout' data-iconpos='right' data-role='button' sam='#/logout'>Logout</a>
+</div>
+<div data-role='content'>
+<p>
+<strong>Exclusive Local Offers...</strong>
+</p>
+<div jeach='current_user.featured_deals'>
+<a jattr='sam.#/offers/{{id}}'>
+<img class='p80 wb' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p160.jpg'>
+</a>
+</div>
+<p>
+Hi&nbsp;<span jtext='current_user.first_name'></span>, Savergo is a world of local offers near work
+(new ones pop up each day).
+Live in Soho, expanding soon.
+</p>
+<p>
+Please set up your profile &amp; company.
+You have
+<span jtext='current_user.credits_unused_count'></span>
+credits to spend.
+</p>
+<div class='ui-grid-a'>
+<div class='ui-block-a'>
+<a data-role='button' data-theme='b' sam='#/offers'>New Offers</a>
+</div>
+<div class='ui-block-b'>
+<a data-role='button' data-theme='b' jif='current_user.tickets.first' sam='#/tickets'>Tickets</a>
+</div>
+<div class='ui-block-a'>
+<a data-role='button' data-theme='c' sam='#/profile'>Profile</a>
+</div>
+<div class='ui-block-b'>
+<a data-role='button' data-theme='b' sam='#/company'>Company</a>
+</div>
+</div>
+</div>
+<div data-role='footer'>
+<div class='ui-bar-b' data-iconpos='right' data-role='navbar'>
+<ul>
+<li>
+<a data-icon='external-link' data-role='button' jattr='target.phonegap_target' jhref='{{R.app_host}}/'>
+www.Savergo.com
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id='home_edit'>
+<div data-role='page' data-url='#/home/edit'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/profile'>Profile</a>
+<h1>Profile Edit</h1>
+</div>
+<div data-role='content'>
+<form action='#/home' method='PUT'>
+<div data-role='fieldcontain'>
+<label for='first_name'>First Name</label>
+<input id='first_name' jval='first_name' name='user[first_name]' required type='text'>
+<span class='inline-errors' jtext='errors_first_name'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='last_name'>Last Name</label>
+<input id='last_name' jval='last_name' name='user[last_name]' required type='text'>
+<span class='inline-errors' jtext='errors_last_name'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='job_title'>Job Title</label>
+<input id='job_title' jval='job_title' name='user[job_title]' required type='text'>
+<span class='inline-errors' jtext='errors_job_title'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='location_id'>Office Location</label>
+<select data-native-menu='false' id='location_id' jhtml='LocationIdOptions' name='user[location_id]'></select>
+</div>
+<div data-role='fieldcontain'>
+<label for='time_zone'>Time Zone</label>
+<select id='time_zone' jhtml='time_zone_options' name='user[time_zone]' required type='text'></select>
+<span class='inline-errors' jtext='errors_time_zone'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='daily_email'>Daily Email</label>
+<select data-role='slider' id='daily_email' name='user[daily_email]'>
+<option jnif='daily_email' selected='selected' value='0'>No</option>
+<option jnif='daily_email' value='1'>Yes</option>
+<option jif='daily_email' value='0'>No</option>
+<option jif='daily_email' selected='selected' value='1'>Yes</option>
+</select>
+<span class='inline-errors' jtext='errors_daily_email'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='newsletter'>Newsletter</label>
+<select data-role='slider' id='newsletter' name='user[newsletter]'>
+<option jnif='newsletter' selected='selected' value='0'>No</option>
+<option jnif='newsletter' value='1'>Yes</option>
+<option jif='newsletter' value='0'>No</option>
+<option jif='newsletter' selected='selected' value='1'>Yes</option>
+</select>
+<span class='inline-errors' jtext='errors_newsletter'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='mobile_alerts'>Mobile Alerts</label>
+<select data-role='slider' id='mobile_alerts' name='user[mobile_alerts]'>
+<option jnif='mobile_alerts' selected='selected' value='0'>No</option>
+<option jnif='mobile_alerts' value='1'>Yes</option>
+<option jif='mobile_alerts' value='0'>No</option>
+<option jif='mobile_alerts' selected='selected' value='1'>Yes</option>
+</select>
+<span class='inline-errors' jtext='errors_mobile_alerts'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='deals_admin_notifications'>Deals Admin Notifications</label>
+<select data-role='slider' id='deals_admin_notifications' name='user[deals_admin_notifications]'>
+<option jnif='deals_admin_notifications' selected='selected' value='0'>No</option>
+<option jnif='deals_admin_notifications' value='1'>Yes</option>
+<option jif='deals_admin_notifications' value='0'>No</option>
+<option jif='deals_admin_notifications' selected='selected' value='1'>Yes</option>
+</select>
+<span class='inline-errors' jtext='errors_deals_admin_notifications'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='gender'>Gender</label>
+<select id='gender' name='user[gender]'>
+<option jattrif='selected.unknown.gender' value='unknown'>Unknown</option>
+<option jattrif='selected.male.gender' value='male'>Male</option>
+<option jattrif='selected.female.gender' value='female'>Female</option>
+</select>
+<span class='inline-errors' jtext='errors_gender'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='age_group'>Age Group</label>
+<select id='age_group' name='user[age_group]'>
+<option jattrif='selected.under 20.gender' value='under 20'>Under 20</option>
+<option jattrif='selected.20 something.age_group' value='20 something'>20 Something</option>
+<option jattrif='selected.30 something.age_group' value='30 something'>30 Something</option>
+<option jattrif='selected.40 something.age_group' value='40 something'>40 Something</option>
+<option jattrif='selected.50 something.age_group' value='50 something'>50 Something</option>
+<option jattrif='selected.60 something.age_group' value='60 something'>60 Something</option>
+<option jattrif='selected.70 plus.age_group' value='70 plus'>70 Plus</option>
+</select>
+<span class='inline-errors' jtext='errors_group'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='password'>Password</label>
+<input id='password' name='user[password]' type='password'>
+<span class='inline-errors' jtext='errors_password'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='password_confirmation'>Password Confirm</label>
+<input id='password_confirmation' name='user[password_confirmation]' type='password'>
+<span class='inline-errors' jtext='errors_password_confirmation'></span>
+</div>
+<div data-role='fieldcontain'>
+<input name='submit' type='submit' value='Update'>
+</div>
+</form>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='location'>
+<div data-role='page' jattr='data-url.#/locations/{{id}}'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/company'>Company</a>
+<h1>Location</h1>
+</div>
+<div data-role='content'>
+<h1 jtext='name'></h1>
+<p>
+<img class='map' jsrc='http://maps.google.com/maps/api/staticmap?size=640x400&amp;sensor=false&amp;zoom=17&amp;markers={{latitude}}%2C{{longitude}}'>
+</p>
+<p>
+Address:
+<span jtext='address'></span>
+</p>
+<p>
+Radius:
+<span jtext='radius_miles'></span>
+miles
+</p>
+<div data-role='collapsible' jif='current_user.company_admin'>
+<h3>Location Admin</h3>
+<div data-role='controlgroup'>
+<a data-role='button' data-theme='a' jattr='sam.#/locations/{{id}}/edit'>Edit</a>
+<a data-role='button' data-theme='a' jattr='sam.#/locations/{{id}}/delete'>Delete</a>
+</div>
+</div>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='locations'>
+<div data-role='page' data-url='#/locations'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/company'>Back</a>
+<h1>Locations</h1>
+</div>
+<div data-role='content'>
+<h2>
+Locations for
+<span jtext='name'></span>
+</h2>
+<p>
+<a data-icon='plus' data-role='button' data-theme='b' sam='#/locations/new'>Add New Location</a>
+</p>
+<ul data-inset='true' data-role='listview'>
+<div jeach='locations.all'>
+<li data-icon='edit'>
+<a jattr='sam.#/locations/{{id}}' jtext='name'></a>
+</li>
+</div>
+</ul>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='locations_delete'>
+<div data-role='dialog'>
+<div class='ui-bar-b' data-role='header'>
+<a data-icon='delete' data-iconpos='notext' sam='#/locations'></a>
+<h1>Delete?</h1>
+</div>
+<div data-role='content'>
+<h1>
+Delete Location?
+</h1>
+<p>
+Location:
+<span jtext='name'></span>
+</p>
+<p>
+<form jaction='#/locations/{{id}}' method='DELETE'>
+<input data-theme='b' type='submit' value='Yes Delete'>
+</form>
+<a data-role='button' data-theme='a' sam='#/locations'>Cancel</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id='locations_new'>
+<div data-role='page'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/locations'>Back</a>
+<h1 jtext='{{createOrUpdate}} Location'></h1>
+</div>
+<div data-role='content'>
+<form jaction='sammyPath' jattr='METHOD.httpMethod'>
+<span class='inline-errors' jtext='errors_base'></span>
+<div data-role='fieldcontain'>
+<label for='name'>Location Name</label>
+<input id='name' jval='name' name='location[name]' placeholder='e.g. Head Office' required type='text'>
+<span class='inline-errors' jtext='errors_name'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='address'>Address</label>
+<input id='address' jval='address' name='location[address]' placeholder='Full Street Address, City, Postcode' required type='text'>
+<span class='inline-errors' jtext='errors_address'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='radius_miles'>Radius of Interest (miles)</label>
+<input id='radius_miles' jval='radius_miles' min='1' name='location[radius_miles]' required type='number'>
+</div>
+<span class='inline-errors' jtext='errors_radius_miles'></span>
+<div data-role='fieldcontain'>
+<input jval='{{createOrUpdate}} Location' name='submit' type='submit'>
+</div>
+</form>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='login'>
+<div data-role='page' data-url='#/login'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/root'>Back</a>
+<div class='shead'></div>
+</div>
+<div data-role='content'>
+<form action='#/login' method='POST'>
+<span class='inline-errors' jhtml='errors' jif='errors'></span>
+<div data-role='fieldcontain'>
+<label for='email'>Work Email</label>
+<input id='email' jval='email' name='user_session[email]' placeholder='Email' type='text'>
+</div>
+<div data-role='fieldcontain'>
+<label for='password'>Password</label>
+<input id='password' jval='password' name='user_session[password]' placeholder='Password' type='password'>
+</div>
+<div data-role='fieldcontain'>
+<input data-theme='b' name='submit' type='submit' value='Login'>
+</div>
+</form>
+<p>
+<a href='/password_resets/new' target='_blank'>Forgotten password?</a>
+</p>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='offer'>
+<div data-role='page' jattr='data-url.#/offers/{{id}}'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/offers'>Offers</a>
+<h1>Offer</h1>
+</div>
+<div data-role='content'>
+<div class='deal_info'>
+<img class='main p200' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p400.jpg'>
+<div class='side'>
+<div class='exclusive' jif='exclusive'>
+<img class='i40' src='http://assets.savergo.com/assets/logos/savergo_standalone_gradient_57px-09e9cd725b719060c53ba8af4984630b.png'>
+<div class='exc-bot'>Exclusive</div>
+</div>
+<div class='tickets'>
+<div class='tik-num' jtext='tickets_left'></div>
+<div class='tik-bot'>
+tickets
+<span jnif='presale'>left</span>
+</div>
+</div>
+<div class='time' jif='presale'>
+<div class='time-bot'>on sale in</div>
+<div class='time-num' jtext='timing_amount'></div>
+<div class='time-bot' jtext='timing_units'></div>
+</div>
+<div class='time' jif='onsale'>
+<div class='time-num' jtext='timing_amount'></div>
+<div class='time-bot'>
+<span jtext='timing_units'></span>
+left
+</div>
+</div>
+<div class='time' jif='soldout'>
+<div class='time-bot'>sold out</div>
+<div class='time-num' jtext='timing_amount'></div>
+<div class='time-bot'>
+<span jtext='timing_units'></span>
+ago
+</div>
+</div>
+<div class='time' jif='ended'>
+<div class='time-bot'>sale finished</div>
+<div class='time-num' jtext='timing_amount'></div>
+<div class='time-bot'>
+<span jtext='timing_units'></span>
+ago
+</div>
+</div>
+</div>
+<br class='cb'>
+<h1 class='deal' jtext='name'></h1>
+<p class='deal_description' jhtml='description'></p>
+<p>
+<img class='p40 wb' jsrc='{{R.asset_host}}/pictures/{{company.picture_id}}/p80.jpg'>
+<strong jtext='company.name'></strong>
+at
+<em jtext='nice_locations'></em>
+</p>
+<p class='fine_print'>
+Redeem
+<span jif='is_now_before_begin_redemption_on'>
+from
+<span jtext='nice_begin_redemption_on'></span>
+</span>
+<span jif='is_now_before_end_redemption_on'>
+until
+<span jtext='nice_end_redemption_on'></span>
+</span>
+<span jif='is_now_after_end_redemption_on'>
+period ended on
+<span jtext='nice_end_redemption_on'></span>
+</span>
+<br>
+On
+<span jtext='days_string'></span>
+<br>
+Hours:
+<span jtext='time_string'></span>
+</p>
+</div>
+<hr>
+<div jif='current_user_ticket_id'>
+<a data-role='button' jattr='sam.#/tickets/{{current_user_ticket_id}}'>Your Ticket</a>
+</div>
+<div jnif='current_user_ticket_id'>
+<div jif='presale'>
+Tickets will be available from
+<span jtext='nice_begin_ticket_sale_at'></span>
+(<span jtext='begin_ticket_sale_at_from_now'></span>)
+</div>
+<div jif='onsale'>
+<form jaction='#/offers/{{id}}/ticket' method='POST'>
+<input type='submit' value='Claim ticket for 1 credit'>
+</form>
+<p>
+You have
+<span jtext='current_user.formatted_credits'></span>
+remaining.
+</p>
+</div>
+<div jif='soldout'>
+<h3>Sold Out! No tickets available.</h3>
+</div>
+<div jif='ended'>
+<h3>Ticket sale for this deal ended&nbsp;</h3><span jtext='end_ticket_sale_at_from_now'></span>.
+</div>
+</div>
+</hr>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='offers'>
+<div data-role='page' data-url='#/offers'>
+<div class='ui-bar-b' data-role='header' data-theme='b'>
+<a data-direction='reverse' data-icon='home' sam='#/home'>Home</a>
+<h1>New Offers</h1>
+</div>
+<div data-role='content'>
+<div jnif='deals.length'>
+<p>
+Hmmm, no offers or deals found.
+</p>
+<p>
+Perhaps all our current offers have Sold Out!
+</p>
+<p>
+Or perhaps Savergo is not yet available in your area.
+</p>
+<p>
+If you have any questions then please get in touch
+via our website.
+</p>
+</div>
+<ul data-inset='true' data-role='listview'>
+<div jeach='deals'>
+<li data-icon='chevron-right'>
+<a jattr='sam.#/offers/{{id}}'>
+<img class='p80' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p160.jpg'>
+<h3 class='deal' jtext='name'></h3>
+<p>
+<strong jtext='company.name'></strong>
+<span jtext='description'></span>
+</p>
+</a>
+</li>
+</div>
+</ul>
+<p class='cb'>
+You have
+<span jtext='current_user.formatted_credits'></span>
+to spend.
+<a data-icon='external-link' data-iconpos='right' data-inline='true' data-mini='true' data-role='button' jhref='{{R.app_host}}/pricing' target='_blank'>Get More Credits</a>
+</p>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='photo_selector'>
+<div>
+<div class='photos'></div>
+<div jeach='photos'>
+<img class='p40 photoselection' jid='select_{{id}}' jsrc='{{R.asset_host}}/photos/{{id}}/p40.jpg'>
+</div>
+<a data-role='button' id='simpleclose' rel='close'>Close</a>
+</div>
+</div>
+
+<div id='photos'>
+<div data-role='page' data-url='#/home/photos'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='home' sam='#/home'>Home</a>
+<h1>Photos</h1>
+</div>
+<div data-role='content'>
+<h2>Photos</h2>
+<p>
+<a data-icon='plus' data-inline='true' data-role='button' data-theme='b' sam='#/home/photos/new'>Add New Photo</a>
+</p>
+<div jeach='photos'>
+<p>
+<img class='p160 wb' jsrc='{{R.asset_host}}/photos/{{id}}/p320.jpg'>
+</p>
+</div>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='photos_new'>
+<div data-role='page'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/photos'>Photos</a>
+<h1>Post Photo</h1>
+</div>
+<div data-role='content'>
+<h2>Post a new photo</h2>
+<div jif='phonegap'>
+<img class='p160' id='myImage'>
+<button onclick='capturePhotoEdit();'>Take Photo</button>
+<button onclick='getPhoto();'>From Device Library</button>
+</div>
+<form action='#/home/photos' enctype='multipart/form-data' method='POST'>
+<p jnif='phonegap'>
+<input name='photo[image_file]' type='file'>
+</p>
+<p jif='phonegap'>
+<input id='myImage_data' name='photo[data64]' type='hidden'>
+</p>
+<p class='inline-errors' jif='errors_base' jtext='errors_base'></p>
+<input type='submit' value='Post Photo'>
+</form>
+<progress max='100' value='0'></progress>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='picture_edit'>
+<div data-role='page'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/profile'>Profile</a>
+<h1>Picture edit</h1>
+</div>
+<div data-role='content'>
+<p>
+<img class='p80' id='myImage' jsrc='{{R.asset_host}}/pictures/{{current_user.picture_id}}/p80.jpg'>
+</p>
+<div jif='phonegap'>
+<button onclick='capturePhotoEdit();'>Take Photo</button>
+<button onclick='getPhoto();'>From Photo Library</button>
+</div>
+<form action='#/home/picture' enctype='multipart/form-data' method='PUT'>
+<p jnif='phonegap'>
+<input name='picture[image_file]' type='file'>
+</p>
+<p jif='phonegap'>
+<input id='myImage_data' name='picture[data64]' type='hidden'>
+</p>
+<p class='inline-errors' jif='errorsBase' jtext='errorsBase'></p>
+<input data-theme='b' type='submit' value='Save Picture'>
+</form>
+<progress max='100' value='0'></progress>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='profile'>
+<div data-role='page' data-url='#/profile'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='home' sam='#/home'>Home</a>
+<div class='shead'></div>
+</div>
+<div class='minh' data-role='content'>
+<div class='profile'>
+<img class='p80 wb' jsrc='{{R.asset_host}}/pictures/{{picture_id}}/p160.jpg'>
+<strong jtext='name'></strong>
+<br>
+<span jif='gender'>
+<span jtext='gender'></span>
+-
+</span>
+<span jif='age_group'>
+<span jtext='age_group'></span>
+-
+</span>
+<span jtext='company.name'></span>
+<span jif='location'>
+-
+<span jtext='location.name'></span>
+</span>
+</div>
+<p class='cb'>
+You have
+<span jtext='current_user.formatted_credits'></span>
+to spend.
+<a data-icon='external-link' data-iconpos='right' data-inline='true' data-mini='true' data-role='button' jhref='{{R.app_host}}/pricing' target='_blank'>Get More Credits</a>
+</p>
+<div data-role='collapsible'>
+<h3>Edit Profile</h3>
+<div data-role='controlgroup'>
+<a data-role='button' data-theme='c' sam='#/home/picture/edit'>Add/Edit Profile Picture</a>
+<a data-role='button' data-theme='c' sam='#/home/edit'>Edit Profile &amp; Settings</a>
+<!-- %a(data-role="button" sam="#/home/photos" data-theme="c") Your Photos -->
+</div>
+</div>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='reload'>
+<div data-role='page' data-url='#/reload'>
+<div class='ui-bar-e' data-role='header'>
+<h1>Loading Offers...</h1>
+</div>
+<div data-role='content'></div>
+</div>
+</div>
+
+<div id='root'>
+<div data-role='page' data-url='#/root'>
+<div class='ui-bar-b' data-role='header'>
+<h1 id='savergo-title'>Employee benefits are now local</h1>
+</div>
+<div class='ui-bar-b' data-role='content'>
+<div class='savergo-header'></div>
+<p>
+<a data-role='button' data-theme='b' sam='#/login'>Login</a>
+</p>
+<p>
+<a data-role='button' data-theme='b' sam='#/users/new'>Signup</a>
+</p>
+<p>
+<a data-role='button' data-theme='b' sam='#/about'>About</a>
+</p>
+<p>&nbsp;</p>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo Limited &copy; 2012</h4>
+</div>
+</div>
+</div>
+
+<div id='ticket'>
+<div data-role='page' jattr='data-url.#/tickets/{{id}}'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/tickets'>Tickets</a>
+<h1>Ticket</h1>
+</div>
+<div data-role='content'>
+<p>
+Print this ticket or show this page on your mobile when at&nbsp;<span jtext='deal.company.name'></span>.
+</p>
+<a data-icon='download' data-iconpos='right' data-role='button' data-theme='b' jhref='{{R.app_host}}/pdfs/{{uuid}}.pdf' target='_blank'>Print PDF Ticket</a>
+<h2>
+Savergo Ticket S000<span jtext='id'></span></h2>
+<p>
+<img class='p40 wb' jsrc='{{R.asset_host}}/pictures/{{user.picture_id}}/p40.jpg'>
+<span jtext='user.name'></span>
+<br>
+<img class='p40 wb' jsrc='{{R.asset_host}}/pictures/{{user.company.picture_id}}/p40.jpg'>
+from
+<strong>
+<span jtext='user.company.name'></span>
+</strong>
+</p>
+<p></p>
+<div class='deal_info'>
+<img class='main p200' jsrc='{{R.asset_host}}/pictures/{{deal.picture_id}}/p400.jpg'>
+<div class='side'>
+<div class='exclusive' jif='exclusive'>
+<img class='i40' src='http://assets.savergo.com/assets/logos/savergo_standalone_gradient_57px-09e9cd725b719060c53ba8af4984630b.png'>
+<div class='exc-bot'>Exclusive</div>
+</div>
+</div>
+<br class='cb'>
+<h1 class='deal' jtext='deal.name'></h1>
+<p class='deal_description' jtext='deal.description'></p>
+<p>
+<img class='p40 wb' jsrc='{{R.asset_host}}/pictures/{{deal.company.picture_id}}/p80.jpg'>
+<strong jtext='deal.company.name'></strong>
+at
+<em jtext='deal.nice_locations'></em>
+</p>
+<p class='fine_print'>
+Redeem
+<span jif='deal.is_now_before_begin_redemption_on'>
+from
+<span jtext='deal.nice_begin_redemption_on'></span>
+</span>
+<span jif='deal.is_now_before_end_redemption_on'>
+until
+<span jtext='deal.nice_end_redemption_on'></span>
+</span>
+<span jif='deal.is_now_after_end_redemption_on'>
+period ended on
+<span jtext='deal.nice_end_redemption_on'></span>
+</span>
+<br>
+On
+<span jtext='deal.days_string'></span>
+<br>
+Hours:
+<span jtext='deal.time_string'></span>
+</p>
+</div>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Your Ticket</h4>
+</div>
+</div>
+</div>
+
+<div id='tickets'>
+<div data-role='page' data-url='#/tickets'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='home' sam='#/home'>Home</a>
+<h1>Tickets</h1>
+</div>
+<div class='minh' data-role='content'>
+<h2>Your Tickets</h2>
+<div jnif='tickets.length'>
+<p>
+You currently have no deal tickets!
+</p>
+<p>
+If you have some credits then you can
+exchange them for deals.
+</p>
+<a data-icon='arrow-right' data-iconpos='right' data-role='button' sam='#/offers'>View Deals</a>
+</div>
+<ul data-inset='true' data-role='listview'>
+<div jeach='tickets'>
+<li data-icon='chevron-right'>
+<a jattr='sam.#/tickets/{{id}}'>
+<img class='p80' jsrc='{{R.asset_host}}/pictures/{{deal.picture_id}}/p80.jpg'>
+<h3 class='deal' jtext='deal.name'></h3>
+<p>
+<strong jtext='deal.company.name'></strong>
+<span jtext='deal.description'></span>
+</p>
+</a>
+</li>
+</div>
+</ul>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Savergo</h4>
+</div>
+</div>
+</div>
+
+<div id='users_new'>
+<div data-role='page' data-url='#/users/new'>
+<div class='ui-bar-b' data-role='header'>
+<a data-direction='reverse' data-icon='back' sam='#/root'>Back</a>
+<div class='shead'></div>
+</div>
+<div data-role='content'>
+<form action='#/users' method='POST'>
+<span class='inline-errors' jtext='errors_base'></span>
+<div data-role='fieldcontain'>
+<label for='first_name'>First Name</label>
+<input id='first_name' jval='first_name' name='user[first_name]' required type='text'>
+<span class='inline-errors' jtext='errors_first_name'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='last_name'>Last Name</label>
+<input id='last_name' jval='last_name' name='user[last_name]' required type='text'>
+<span class='inline-errors' jtext='errors_last_name'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='email'>Work Email</label>
+<input id='email' jval='email' name='user[email]' required type='email'>
+<span class='inline-errors' jtext='errors_email'></span>
+<span class='inline-errors' jtext='errors_email'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='password'>Password</label>
+<input id='password' name='user[password]' placeholder='minimum 8 characters' required type='password'>
+<span class='inline-errors' jtext='errors_password'></span>
+</div>
+<div data-role='fieldcontain'>
+<label for='password_confirmation'>Password Confirm</label>
+<input id='password_confirmation' name='user[password_confirmation]' required type='password'>
+<span class='inline-errors' jtext='errors_password_confirmation'></span>
+</div>
+<div data-role='fieldcontain'>
+<a data-icon='external-link' data-iconpos='right' data-mini='true' data-role='button' jhref='{{R.app_host}}/terms.pdf' target='_blank'>Savergo Terms &amp; Conditions PDF</a>
+<label for='accept_terms'>
+Accept T&amp;Cs
+</label>
+<input id='accept_terms' jval='accept_terms' name='user[accept_terms]' required type='checkbox'>
+</div>
+<div data-role='fieldcontain'>
+<input data-theme='b' name='submit' type='submit' value='Create Account'>
+</div>
+</form>
+</div>
+<div class='ui-bar-b' data-role='footer'>
+<h4>Employee Savings - Savergo</h4>
+</div>
+</div>
+</div>
+
+</div>
+
+<script type="text/javascript">if (!NREUMQ.f) { NREUMQ.f=function() {
+NREUMQ.push(["load",new Date().getTime()]);
+var e=document.createElement("script");
+e.type="text/javascript";e.async=true;e.src="https://d1ros97qkrwjf5.cloudfront.net/39/eum/rum.js";
+document.body.appendChild(e);
+if(NREUMQ.a)NREUMQ.a();
+};
+NREUMQ.a=window.onload;window.onload=NREUMQ.f;
+};
+NREUMQ.push(["nrfj","beacon-1.newrelic.com","5ff81dba81",88508,"el0LQ0BYVV1RQRsTVlZGSlZCRw==",0,74,new Date().getTime(),"","","","",""])</script></body>
 </html>
